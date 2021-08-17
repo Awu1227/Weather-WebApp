@@ -1,9 +1,9 @@
 <template>
-  <HelloWorld />
+  <div>
+    <router-view></router-view>
+  </div>
 </template>
 
-<script setup>
-import HelloWorld from "comps/HelloWorld.vue";
-</script>
+<script setup></script>
 
 <style></style>
