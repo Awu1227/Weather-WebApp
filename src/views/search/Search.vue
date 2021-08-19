@@ -32,7 +32,11 @@ export default {
   width: 100%;
 }
 .search-input {
-  @apply h-6 text-center rounded-lg;
+  @apply h-6 text-center rounded-lg ;
+  box-sizing: border-box;
   width: 100%;
+  outline: none;
+  color:#666;
+  padding: 0 .5rem;
 }
 </style>
