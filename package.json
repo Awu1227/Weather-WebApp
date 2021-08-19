@@ -4,6 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:beta": "vite build --mode beta",
+    "build:release": "vite build --mode release",
     "serve": "vite preview",
     "lint": "eslint \"src/**/*.{js,vue}\"",
     "prepare": "husky install"
@@ -12,6 +14,7 @@
     "*.{vue,js,ts}": "eslint --fix"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "vue": "^3.0.5",
     "vue-router": "^4.0.11",
     "vuex": "^4.0.2"
