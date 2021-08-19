@@ -9,14 +9,25 @@
     ><div class="top-2  w-40 bg-purple-300">设置页</div></router-link
   >
   <div>我是首页</div>
+  <button @click="handleClick">Fetch</button>
 </template>
 
 <script>
+import Get from 'utils/request.js'
 export default {
   setup() {
-    return {};
+    const handleClick = async () => {
+      const options = {
+        location: '101010100',
+      }
+      const data = await Get('/weather/now', options)
+      console.log(data)
+    }
+    return {
+      handleClick,
+    }
   },
-};
+}
 </script>
 
 <style scoped></style>
