@@ -9,13 +9,14 @@
     ><div class="top-2  w-40 bg-purple-300">设置页</div></router-link
   >
   <div>我是首页</div>
+  <realtime/>
 </template>
 
 <script>
+import Realtime from './Realtime.vue';
 export default {
-  setup() {
-    return {};
-  },
+  components: { Realtime },
+  setup() {},
 };
 </script>
 
