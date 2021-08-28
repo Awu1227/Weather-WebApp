@@ -42,9 +42,9 @@ export default {
           link: 'https://new.qq.com/omn/20210827/20210827A0FA2000.html',
         },
       ],
-    };
+    }
   },
-};
+}
 </script>
 
 <style scoped>

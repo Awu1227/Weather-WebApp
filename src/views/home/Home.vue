@@ -10,11 +10,14 @@
   >
   <div>我是首页</div>
   <button @click="handleClick">Fetch</button>
+  <realtime/>
 </template>
 
 <script>
 import Get from 'utils/request.js'
+import Realtime from './Realtime.vue'
 export default {
+  components: { Realtime },
   setup() {
     const handleClick = async () => {
       const options = {
