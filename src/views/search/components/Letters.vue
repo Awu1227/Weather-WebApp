@@ -1,17 +1,19 @@
 <template>
   <ul class="list text-blue-400">
-    <li class="item ">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
+    <li class="item " v-for="(item,key) of cities" :key="key" @click="handleLetterClick" >{{key}}</li>
   </ul>
 </template>
 
 <script>
   export default {
-    
+    props:{
+      cities:Object
+    },
+    methods: {
+      handleLetterClick(e){
+        this.$emit('change',e.target.innerText)
+      }
+    },
   }
 </script>
 
