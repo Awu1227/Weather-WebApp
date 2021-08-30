@@ -12,84 +12,15 @@
     <div class="area">
       <div class="title">热门城市</div>
       <div class="button-list">
-        <div class="button-wrapper">
-          <div class="button">北京</div>
-        </div>
-        <div class="button-wrapper">
-          <div class="button">北京</div>
-        </div>
-        <div class="button-wrapper">
-          <div class="button">北京</div>
-        </div>
-        <div class="button-wrapper">
-          <div class="button">北京</div>
-        </div>
-        <div class="button-wrapper">
-          <div class="button">北京</div>
+        <div class="button-wrapper" v-for="item of hot" :key="item.id">
+          <div class="button">{{item.name}}</div>
         </div>
       </div>
     </div>
-    <div class="area">
-      <div class="title">A</div>
+    <div class="area" v-for="(item,key) of cities" :key="key" :ref="setItemRef">
+      <div class="title">{{key}}</div>
       <div class="itemlist">
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-      </div>
-    </div>
-    <div class="area">
-      <div class="title">A</div>
-      <div class="itemlist">
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-      </div>
-    </div>
-    <div class="area">
-      <div class="title">A</div>
-      <div class="itemlist">
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-      </div>
-    </div>
-    <div class="area">
-      <div class="title">A</div>
-      <div class="itemlist">
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-      </div>
-    </div>
-    <div class="area">
-      <div class="title">A</div>
-      <div class="itemlist">
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-      </div>
-    </div>
-    <div class="area">
-      <div class="title">A</div>
-      <div class="itemlist">
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-      </div>
-    </div>
-    <div class="area">
-      <div class="title">A</div>
-      <div class="itemlist">
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
-        <div class="item border-bottom">阿拉尔</div>
+        <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">{{innerItem.name}}</div>
       </div>
     </div>
   </div>
@@ -99,9 +30,44 @@
 <script>
 import BetterScroll from 'better-scroll'
 export default {
-  mounted(){
-    let bs = new BetterScroll('.list')
+  props:{
+    hot:Array,
+    cities:Object,
+    letter:String
+  },
+  data(){
+    return{
+      itemRef:[],
+      toElement:[]
+    }
+  },
+  methods:{
+  setItemRef(el){
+    if(el){
+      this.itemRef.push(el)
+    }
   }
+  },
+  mounted(){
+    this.bs = new BetterScroll('.list')
+    console.log(this.cities);
+  },
+  beforeUpdate(){
+    this.itemRef=[]
+  },
+  watch: {
+    letter () {
+      if (this.letter) {
+        this.itemRef.forEach(element=>{
+          if(element.innerText.includes(this.letter)){
+            this.toElement = element
+            // console.log(toElement);
+          }
+        })
+        this.bs.scrollToElement(this.toElement)
+      }
+    }
+  },
 }
 </script>
 
@@ -116,7 +82,7 @@ export default {
 }
 .title{
   background: #eee;
-  padding-left: .2rem;
+  padding: .2rem;
   color: #666;
   font-size: .2rem;
 }
@@ -136,6 +102,6 @@ export default {
   border: .02rem solid #ccc;
 }
 .item{
-  padding-left: .2rem;
+  padding: .2rem;
 }
 </style>
