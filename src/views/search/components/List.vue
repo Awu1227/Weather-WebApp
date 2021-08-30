@@ -60,7 +60,6 @@ export default {
       if (this.letter) {
         this.itemRef.forEach(element=>{
           if(element.innerText.includes(this.letter)){
-            console.log(element);
             this.toElement = element
             // console.log(toElement);
           }

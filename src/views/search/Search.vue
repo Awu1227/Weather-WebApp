@@ -1,6 +1,6 @@
 <template>
 <div>
-  <Header></Header>
+  <Header :cities = "cities"></Header>
   <List :cities = "cities" :hot = "hotCities" :letter = "letter"></List>
   <Letters :cities = "cities" @change="hanleLetterChange"/>
 </div>
