@@ -11,12 +11,12 @@
     >
     <div>我是首页</div>
     <button @click="handleClick">Fetch</button>
-    <realtime />
     <h1>
       我是首页，当前城市为{{ this.$store.state.city }}，location为{{
         this.$store.state.location
       }}
     </h1>
+    <realtime />
   </div>
 </template>
 

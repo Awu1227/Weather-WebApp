@@ -3,6 +3,7 @@
     <div
       class="container border-2 h-20 bg-blue-400 flex justify-center relative"
     >
+      <router-link to="/"><span class="back"></span></router-link>
       <div class="absolute top-2">
         <span class="span1">境内</span>
         <span class="span2">国际/港澳台</span>
@@ -21,7 +22,7 @@
             class="search-item border-bottom"
             v-for="item of list"
             :key="item"
-            @click="handleCityClick(item.name)"
+            @click="handleCityClick(item)"
           >
             {{ item.name }}
           </li>
@@ -35,7 +36,7 @@
 </template>
 
 <script>
-import BetterScroll from 'better-scroll';
+import BetterScroll from 'better-scroll'
 export default {
   props: {
     cities: Object,
@@ -45,46 +46,57 @@ export default {
       keyword: '',
       list: [],
       timer: null,
-    };
+    }
   },
   watch: {
     keyword() {
       if (this.timer) {
-        clearTimeout(this.timer);
+        clearTimeout(this.timer)
       }
       if (!this.keyword) {
-        this.list = [];
-        return;
+        this.list = []
+        return
       }
       this.timer = setTimeout(() => {
-        const result = [];
+        const result = []
         for (let i in this.cities) {
           this.cities[i].forEach(value => {
             if (
               value.spell.indexOf(this.keyword) > -1 ||
               value.name.indexOf(this.keyword) > -1
             ) {
-              result.push(value);
+              result.push(value)
             }
-          });
+          })
         }
-        this.list = result;
-      }, 100);
+        this.list = result
+      }, 100)
     },
   },
-  methods:{
-  handleCityClick(city){
-      this.$store.dispatch('changeCity',city)
+  methods: {
+    handleCityClick(city) {
+      this.$store.dispatch('changeCity', city)
       this.$router.push('/')
-    }
+    },
   },
   mounted() {
-    this.bs = new BetterScroll(this.$refs.search);
+    this.bs = new BetterScroll(this.$refs.search)
   },
-};
+}
 </script>
 
 <style scoped>
+.back {
+  position: absolute;
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-bottom: 1px solid #fff;
+  border-left: 1px solid #fff;
+  transform: rotateZ(45deg);
+  left: 1rem;
+  top: 0.8rem;
+}
 .span1 {
   @apply border-solid border border-white inline-block w-24 h-7 bg-white   text-blue-400 text-center float-left;
 }

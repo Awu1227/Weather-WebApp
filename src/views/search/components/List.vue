@@ -5,15 +5,17 @@
         <div class="title">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">{{this.$store.state.city}}</div>
+            <div class="button">{{ this.$store.state.city }}</div>
           </div>
         </div>
       </div>
       <div class="area">
         <div class="title">热门城市</div>
         <div class="button-list">
-          <div class="button-wrapper" v-for="item of hot" :key="item.id" >
-            <div class="button" @click="handleCityClick(item)">{{ item.name }}</div>
+          <div class="button-wrapper" v-for="item of hot" :key="item.id">
+            <div class="button" @click="handleCityClick(item)">
+              {{ item.name }}
+            </div>
           </div>
         </div>
       </div>
@@ -59,10 +61,10 @@ export default {
         this.itemRef.push(el)
       }
     },
-    handleCityClick(city){
-      this.$store.dispatch('changeCity',city)
+    handleCityClick(city) {
+      this.$store.dispatch('changeCity', city)
       this.$router.push('/')
-    }
+    },
   },
   mounted() {
     this.bs = new BetterScroll('.list')

@@ -22,11 +22,11 @@ export default {
   },
   computed: {
     letters() {
-      const letters = [];
+      const letters = []
       for (let i in this.cities) {
-        letters.push(i);
+        letters.push(i)
       }
-      return letters;
+      return letters
     },
   },
   data() {
@@ -35,46 +35,46 @@ export default {
       itemRefs: [],
       startY: 0,
       timer: null,
-    };
+    }
   },
   methods: {
     handleLetterClick(e) {
-      this.$emit('change', e.target.innerText);
+      this.$emit('change', e.target.innerText)
     },
     handleTouchStart() {
-      this.touchStatus = true;
+      this.touchStatus = true
     },
     handleTouchMove(e) {
       if (this.touchStatus) {
         // 做节流处理
         if (this.timer) {
-          clearTimeout(this.timer);
+          clearTimeout(this.timer)
         }
         this.timer = setTimeout(() => {
-          const touchY = e.touches[0].clientY - 80;
-          const index = Math.floor((touchY - this.startY) / 24);
+          const touchY = e.touches[0].clientY - 80
+          const index = Math.floor((touchY - this.startY) / 24)
           if (index >= 0 && index < this.letters.length) {
-            this.$emit('change', this.letters[index]);
+            this.$emit('change', this.letters[index])
           }
-        }, 16);
+        }, 16)
       }
     },
     handleTouchEnd() {
-      this.touchStatus = false;
+      this.touchStatus = false
     },
     setItemRef(el) {
       if (el) {
-        this.itemRefs.push(el);
+        this.itemRefs.push(el)
       }
     },
   },
   beforeUpdate() {
-    this.itemRefs = [];
+    this.itemRefs = []
   },
   updated() {
-    this.startY = this.itemRefs[0].offsetTop;
+    this.startY = this.itemRefs[0].offsetTop
   },
-};
+}
 </script>
 
 <style scoped>
