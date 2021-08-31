@@ -1,4 +1,5 @@
 <template>
+  <div>
   <router-link to="/search"
     ><div class="top-2  w-40 bg-green-300">搜索页</div></router-link
   >
@@ -8,7 +9,8 @@
   <router-link to="/setting"
     ><div class="top-2  w-40 bg-purple-300">设置页</div></router-link
   >
-  <div>我是首页</div>
+  <h1>我是首页，当前城市为{{this.$store.state.city}}，location为{{this.$store.state.location}}</h1>
+</div>
 </template>
 
 <script>
