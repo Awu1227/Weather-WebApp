@@ -1,9 +1,9 @@
 <template>
-<div>
-  <Header :cities = "cities"></Header>
-  <List :cities = "cities" :hot = "hotCities" :letter = "letter"></List>
-  <Letters :cities = "cities" @change="hanleLetterChange"/>
-</div>
+  <div>
+    <Header :cities="cities"></Header>
+    <List :cities="cities" :hot="hotCities" :letter="letter"></List>
+    <Letters :cities="cities" @change="hanleLetterChange" />
+  </div>
 </template>
 
 <script>
@@ -13,45 +13,39 @@ import List from './components/List.vue'
 import Letters from './components/Letters.vue'
 
 export default {
-  components:{
+  components: {
     Header,
     List,
-    Letters
+    Letters,
   },
-  data(){
-    return{
-      cities:{},
-      hotCities:[],
-      letter:''
+  data() {
+    return {
+      cities: {},
+      hotCities: [],
+      letter: '',
     }
   },
-  methods:{
-    getCityInfo(){
+  methods: {
+    getCityInfo() {
       axios.get('../../../static/mock/city.json').then(this.handleGetCitiesInfo)
     },
-    handleGetCitiesInfo(res){
+    handleGetCitiesInfo(res) {
       res = res.data
-      if(res.ret&& res.data) {
+      if (res.ret && res.data) {
         const data = res.data
-        this.cities=data.cities
+        this.cities = data.cities
         this.hotCities = data.hotCities
-        // console.log(this.cities);
       }
     },
-    hanleLetterChange(letter){
+    hanleLetterChange(letter) {
       this.letter = letter
-    }
+    },
   },
 
-  mounted(){
+  mounted() {
     this.getCityInfo()
-  }
-
-
-  
+  },
 }
 </script>
 
-<style  scoped>
-
-</style>
+<style scoped></style>
