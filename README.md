@@ -1,6 +1,5 @@
-# vueproject
-
-小白闯江湖队的作品~
+# ⛅Weather-WebApp
+一款用于天气查询的WebApp
 
 ## 注意事项
 
